@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -16,26 +15,26 @@ class CustomLoginView(LoginView):
         return reverse_lazy('tasks')
 
 
-class TaskList(LoginRequiredMixin,ListView):
+class TaskList(ListView):
     model = Task 
     context_object_name = 'tasks'
 
-class TaskDetail(LoginRequiredMixin,DetailView):
+class TaskDetail(DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
 
-class TaskCreate(LoginRequiredMixin,CreateView):
+class TaskCreate(CreateView):
     model = Task
     fields = '__all__'
     success_url = reverse_lazy('tasks')
 
-class TaskUpdate(LoginRequiredMixin,UpdateView):
+class TaskUpdate(UpdateView):
     model = Task
     fields = '__all__'
     success_url = reverse_lazy('tasks')
 
-class TaskDelete(LoginRequiredMixin,DeleteView):
+class TaskDelete(DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
