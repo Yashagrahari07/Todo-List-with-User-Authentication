@@ -26,7 +26,7 @@ class RegisterPage(FormView):
     def form_valid(self, form):
         user = Task
         if user is not None:
-            login(self.reuest,user)
+            login(self.request,user)
         return super(RegisterPage, self).form_valid(form)
     
     def get(self, *args, **kwargs):
